@@ -1,0 +1,10 @@
+<%- include('../../partials/header.ejs') %>
+<h1><%= title %></h1>
+
+<%- include('../../partials/nav.ejs') %>
+
+<form action="/admin/notes" method="POST">
+  <textarea name="content" required></textarea>
+  <input type="submit" value="Save" />
+</form>
+<%- include('../../partials/footer.ejs') %>

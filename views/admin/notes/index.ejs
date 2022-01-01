@@ -1,0 +1,15 @@
+<%- include('../../partials/header.ejs') %>
+<h1><%= title %></h1>
+
+<%- include('../../partials/nav.ejs', { isAdmin: true }) %>
+
+<a href="/admin/notes/new">Add Note</a>
+
+<div id="main">
+  <ul>
+<% notes.forEach(note => { -%>
+    <li><%= note.content %> <a href="/admin/notes/<%= note.id %>">Edit</a></li>
+<% }); -%>
+  </ul>
+</div>
+<%- include('../../partials/footer.ejs') %>

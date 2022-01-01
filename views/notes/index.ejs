@@ -1,0 +1,13 @@
+<%- include('../partials/header.ejs') %>
+<h1><%= title %></h1>
+
+<%- include('../partials/nav.ejs', { isHome: true }) %>
+
+<div id="main">
+  <ul>
+  <% notes.forEach(note => { -%>
+    <li><%= note.content %> <a href="/notes/<%= note.id %>">View</a></li>
+  <% }); -%>
+  </ul>
+</div>
+<%- include('../partials/footer.ejs') %>
