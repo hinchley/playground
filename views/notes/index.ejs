@@ -4,6 +4,11 @@
 <%- include('../partials/nav.ejs', { isHome: true }) %>
 
 <div id="main">
+  <form method="GET">
+    <input type="search" name="q" value="<%= q %>"/>
+    <input type="submit" value="Search" />
+  </form>
+
   <ul>
   <% notes.forEach(note => { -%>
     <li><%= note.content %> <a href="/notes/<%= note.id %>">View</a></li>

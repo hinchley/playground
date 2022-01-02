@@ -33,3 +33,10 @@ export const remove = (id) => {
       WHERE id = @id
   `, { id });
 };
+
+export const find = (q) => {
+  return db.all(`
+    SELECT * FROM NotesSearch
+      WHERE content MATCH @q
+  `, { q });
+};

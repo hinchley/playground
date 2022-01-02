@@ -21,7 +21,7 @@ a, a:visited { color: var(--action-color); }
 a:hover, a:focus { text-decoration: none; outline: none; }
 
 ::selection { background: #3f3f3f; }
-textarea::selection { background: var(--action-color); }
+input::selection, textarea::selection { background: var(--action-color); }
 
 nav ul { list-style: none; margin: var(--minor-gap) 0 var(--major-gap); }
 nav ul li { display: inline; margin-right: var(--minor-gap); }
