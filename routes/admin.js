@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { index, notes } from '../controllers/admin.js';
+import { notes } from '../controllers/admin.js';
 
 const router = Router();
 
 // admin home page.
-router.get('/', index);
+router.get('/', notes.all);
 
 // show all notes.
 router.get('/notes', notes.all);

@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.3.0] - 2022-01-03
+### Added
+- Session-based authentication. Required to access /admin. Hard-coded username and password for now.
+- Avoided errors on favicon.ico requests.
+
+### Changed
+- Replaced redirects to home page and default admin page.
+
 ## [0.2.0] - 2022-01-02
 ### Added
 - Notes search.

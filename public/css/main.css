@@ -34,3 +34,5 @@ input { margin: var(--major-gap) 0; padding: var(--minor-gap) 1em; border: none;
 textarea { padding: var(--minor-gap); min-height: 100px; width: 100%; outline: none; }
 
 .action { color: var(--action-color); background-color: transparent; float: right; }
+
+.error { color: orchid; }

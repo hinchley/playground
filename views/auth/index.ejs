@@ -1,0 +1,11 @@
+<%- include('../partials/header.ejs') %>
+<h1><%= title %></h1>
+
+<% if (typeof error != 'undefined') { -%><p class="error"><%= error %></p><% } -%>
+<form method="POST">
+  <input type="text" name="username" value="<%= username %>" placeholder="username" />
+  <input type="password" name="password" value="<%= password %>" placeholder="password" />
+  <input type="submit" value="Sign in" />
+</form>
+
+<%- include('../partials/footer.ejs') %>
