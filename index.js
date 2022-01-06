@@ -4,6 +4,7 @@ import override from 'method-override';
 
 import home  from './routes/home.js';
 import notes from './routes/notes.js';
+import tags  from './routes/tags.js';
 import admin from './routes/admin.js';
 
 import { isNotAuth } from './services/auth.js';
@@ -39,6 +40,7 @@ app.use((req, res, next) => {
 
 app.use('/', home);
 app.use('/notes', notes);
+app.use('/tags', tags);
 app.use('/admin', isNotAuth, admin);
 
 app.listen(3000, () => console.log('Listening...'));

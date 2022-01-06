@@ -1,6 +1,8 @@
 import * as $notes from '../services/notes.js';
+import * as $tags  from '../services/tags.js';
 
 const NOTES_PATH = '/admin/notes';
+const TAGS_PATH  = '/admin/tags';
 
 // admin home page.
 export const index = (req, res) => {
@@ -27,13 +29,18 @@ export const notes = {
 
   // add a note.
   add: (req, res) => {
-    $notes.add(req.body);
+    const { content, tags } = req.body
+    const id = $notes.add(content);
+    $tags.assign(id, tags);
     res.redirect(NOTES_PATH);
   },
 
   // update a note.
   update: (req, res) => {
-    $notes.update(req.params.id, req.body);
+    const { content, tags } = req.body;
+    const id = req.params.id;
+    $notes.update(id, content);
+    $tags.assign(id, tags);
     res.redirect(NOTES_PATH);
   },
 
@@ -41,5 +48,42 @@ export const notes = {
   delete: (req, res) => {
     $notes.remove(req.params.id);
     res.redirect(NOTES_PATH);
+  }
+};
+
+export const tags = {
+  // show all tags.
+  all: (req, res) => {
+    const items = $tags.all();
+    res.render('admin/tags/index', { title: 'Tags', tags: items });
+  },
+
+  // show form for adding a new tag.
+  new: (req, res) => {
+    res.render('admin/tags/new', { title: 'Add Tag' });
+  },
+
+  // show form for updating a note.
+  edit: (req, res) => {
+    const item = $tags.one(req.params.id);
+    res.render('admin/tags/tag', { title: 'Edit Tag', tag: item });
+  },
+
+  // add a tag.
+  add: (req, res) => {
+    $tags.add(req.body);
+    res.redirect(TAGS_PATH);
+  },
+
+  // update a tag.
+  update: (req, res) => {
+    $tags.update(req.params.id, req.body);
+    res.redirect(TAGS_PATH);
+  },
+
+  // delete a tag.
+  delete: (req, res) => {
+    $tags.remove(req.params.id);
+    res.redirect(TAGS_PATH);
   }
 };

@@ -1,9 +1,13 @@
 # Change Log
 
+## [0.4.0] - 2022-01-06
+### Added
+- Support adding tags to notes.
+
 ## [0.3.0] - 2022-01-03
 ### Added
 - Session-based authentication. Required to access /admin. Hard-coded username and password for now.
-- Avoided errors on favicon.ico requests.
+- Avoid errors on favicon.ico requests.
 
 ### Changed
 - Replaced redirects to home page and default admin page.

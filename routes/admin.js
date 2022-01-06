@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { notes } from '../controllers/admin.js';
+import { notes, tags } from '../controllers/admin.js';
 
 const router = Router();
 
@@ -23,5 +23,23 @@ router.put('/notes/:id', notes.update);
 
 // delete a note.
 router.delete('/notes/:id', notes.delete);
+
+// show all tags.
+router.get('/tags', tags.all);
+
+// show form for adding a new tag.
+router.get('/tags/new', tags.new);
+
+// show form for updating a tag.
+router.get('/tags/:id', tags.edit);
+
+// add a tag.
+router.post('/tags', tags.add);
+
+// update a tag.
+router.put('/tags/:id', tags.update);
+
+// delete a tag.
+router.delete('/tags/:id', tags.delete);
 
 export default router;

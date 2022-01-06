@@ -3,9 +3,8 @@
 
 <%- include('../../partials/nav.ejs') %>
 
-<form action="/admin/notes" method="POST">
-  <textarea name="content" required></textarea>
-  <input class="tags" name="tags" placeholder="tags" />
+<form action="/admin/tags" method="POST">
+  <input name="name" required />
   <input type="submit" value="Save" />
 </form>
 <%- include('../../partials/footer.ejs') %>

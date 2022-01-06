@@ -1,7 +1,10 @@
 <nav>
   <ul>
     <li><% if (typeof isHome != 'undefined') { %><strong>Home</strong><% } else { %><a href="/">Home</a><% } %></li>
-    <li><% if (typeof isAdmin != 'undefined') { %><strong>Admin</strong><% } else { %><a href="/admin">Admin</a><% } %></li>
-    <% if (isAuth) { %><li><a href="/logout">Logout</a></li><% } -%>
+    <% if (isAuth) { -%>
+    <li><% if (typeof isNotes != 'undefined') { %><strong>Notes</strong><% } else { %><a href="/admin/notes">Notes</a><% } %></li>
+    <li><% if (typeof isTags != 'undefined') { %><strong>Tags</strong><% } else { %><a href="/admin/tags">Tags</a><% } %></li>
+    <% } -%>
+    <li><% if (isAuth) { %><a href="/logout">Logout</a><% } else { -%><a href="/admin">Login</a><% } -%></li>
   </ul>
 </nav>

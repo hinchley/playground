@@ -1,0 +1,15 @@
+<%- include('../../partials/header.ejs') %>
+<h1><%= title %></h1>
+
+<%- include('../../partials/nav.ejs', { isTags: true }) %>
+
+<a href="/admin/tags/new">Add Tag</a>
+
+<div id="main">
+  <ul>
+<% tags.forEach(tag => { -%>
+    <li><%= tag.name %> <a href="/admin/tags/<%= tag.id %>">Edit</a></li>
+<% }); -%>
+  </ul>
+</div>
+<%- include('../../partials/footer.ejs') %>

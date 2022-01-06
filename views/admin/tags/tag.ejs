@@ -1,0 +1,14 @@
+<%- include('../../partials/header.ejs') %>
+<h1><%= title %></h1>
+
+<%- include('../../partials/nav.ejs') %>
+
+<form id="action" action="/admin/tags/<%= tag.id %>?_method=DELETE" method="POST" ></form>
+
+<form action="/admin/tags/<%= tag.id %>?_method=PUT" method="POST">
+  <input name="name" value="<%= tag.name %>" required />
+  <input type="submit" value="Save" />
+  <input type="submit" value="Delete" form="action" class="action" />
+</form>
+
+<%- include('../../partials/footer.ejs') %>

@@ -32,6 +32,7 @@ nav ul li { display: inline; margin-right: var(--minor-gap); }
 
 input { margin: var(--major-gap) 0; padding: var(--minor-gap) 1em; border: none; }
 textarea { padding: var(--minor-gap); min-height: 100px; width: 100%; outline: none; }
+input.tags { display: block; }
 
 .action { color: var(--action-color); background-color: transparent; float: right; }
 
