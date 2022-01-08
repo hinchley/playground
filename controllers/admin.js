@@ -1,5 +1,6 @@
 import * as $notes from '../services/notes.js';
 import * as $tags  from '../services/tags.js';
+import config from '../config.js';
 
 const NOTES_PATH = '/admin/notes';
 const TAGS_PATH  = '/admin/tags';
@@ -12,8 +13,18 @@ export const index = (req, res) => {
 export const notes = {
   // show all notes.
   all: (req, res) => {
-    const items = $notes.all();
-    res.render('admin/notes/index', { title: 'Notes', notes: items });
+    // need error checking.
+    const page = parseInt(req.query.page || 1);
+
+    const { notes, total } = $notes.all(page);
+
+    const pages = Math.ceil(total / config.pagesize);
+
+    const links = {};
+    if (page > 1) { links.prev = page - 1; }
+    if (page != pages) { links.next = page + 1; }
+
+    res.render('admin/notes/index', { title: 'Notes', notes, page, links });
   },
 
   // show form for adding a new note.

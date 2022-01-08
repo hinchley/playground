@@ -1,4 +1,7 @@
 import * as db from './db.js';
+import config from '../config.js';
+
+const limit = config.pagesize;
 
 export const one = (id) => {
   const query = `
@@ -10,9 +13,11 @@ export const one = (id) => {
   return db.one(query, { id });
 };
 
-export const all = () => {
-  const query = `SELECT * FROM Notes`;
-  return db.all(query);
+export const all = (page = 1) => {
+  const total = db.one(`SELECT count(*) AS total FROM Notes`).total;
+  const query = `SELECT * FROM Notes LIMIT @offset, @limit`;
+  const notes = db.all(query, { limit, offset: (page - 1) * limit });
+  return { notes, total };
 };
 
 export const update = (id, content) => {
@@ -23,11 +28,11 @@ export const update = (id, content) => {
   `, { id, content });
 };
 
-export const add = (data) => {
+export const add = (content) => {
   const result = db.run(`
     INSERT INTO Notes (content)
       VALUES (@content)
-  `, data);
+  `, { content });
 
   return result.lastInsertRowid;
 };
@@ -39,9 +44,18 @@ export const remove = (id) => {
   `, { id });
 };
 
-export const find = (q) => {
-  return db.all(`
+export const find = (q, page = 1) => {
+  const total = db.one(`
+    SELECT count(*) as total FROM NotesSearch
+      WHERE content MATCH @q
+    `, { q }).total;
+
+  const query = `
     SELECT * FROM NotesSearch
       WHERE content MATCH @q
-  `, { q });
+      LIMIT @offset, @limit`;
+
+  const notes = db.all(query, { q, limit, offset: (page - 1) * limit });
+
+  return { notes, total };
 };

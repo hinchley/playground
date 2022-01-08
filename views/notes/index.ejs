@@ -5,7 +5,7 @@
 
 <div id="main">
   <form method="GET">
-    <input type="search" name="q" value="<%= q %>"/>
+    <input type="search" name="q" required value="<%= q %>"/>
     <input type="submit" value="Search" />
   </form>
 
@@ -15,4 +15,5 @@
   <% }); -%>
   </ul>
 </div>
+<%- include('../partials/pagination.ejs') %>
 <%- include('../partials/footer.ejs') %>

@@ -1,5 +1,13 @@
 # Change Log
 
+## [0.5.0] - 2022-01-08
+### Added
+- Add pagination.
+- Add config file.
+
+### Changed
+- Made q a required field when searching for a note.
+
 ## [0.4.0] - 2022-01-06
 ### Added
 - Support adding tags to notes.

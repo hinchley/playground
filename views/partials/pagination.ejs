@@ -1,0 +1,7 @@
+<% let query = ''; if (typeof q != 'undefined' ) { query = `q=${q}&` } -%>
+<% if (notes.length) { -%>
+<ul>
+<% if (links.prev) { %><li><a href="?<%= query %>page=<%= links.prev %>">Prev</a></li><% } %>
+<% if (links.next) { %><li><a href="?<%= query %>page=<%= links.next %>">Next</a></li><% } %>
+</ul>
+<% } -%>
