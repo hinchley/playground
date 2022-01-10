@@ -7,6 +7,7 @@ An evolving Node.js application.
 Run:
 
 ```
-node .\init\index.js
+node .\init\schema.js
+node .\init\seed.js
 npm run dev
 ```

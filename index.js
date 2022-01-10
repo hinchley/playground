@@ -2,12 +2,8 @@ import express from 'express';
 import session from 'express-session';
 import override from 'method-override';
 
-import home  from './routes/home.js';
-import notes from './routes/notes.js';
-import tags  from './routes/tags.js';
-import admin from './routes/admin.js';
-
-import { isNotAuth } from './services/auth.js';
+import config from './config.js';
+import routes from './routes.js';
 
 const app = express();
 
@@ -16,7 +12,7 @@ app.set('view engine', 'ejs');
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.use(session({
-  secret: process.env.SESSION_PASSWORD || 'password',
+  secret: config.session.password,
   resave: true,
   saveUninitialized: false,
   cookie: {
@@ -38,9 +34,18 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/', home);
-app.use('/notes', notes);
-app.use('/tags', tags);
-app.use('/admin', isNotAuth, admin);
+app.use(routes);
+
+app.use((err, req, res, next) => {
+  if (! err) { return next(); }
+  if (! err.message) { err.message = 'Not Happy'; }
+  if (! err.statusCode) { err.statusCode = 500; }
+
+  res.status(err.statusCode).send(`${err.statusCode}: ${err.message}`);
+});
+
+app.use((req, res) => {
+  res.status(404).send('404: Not Found');
+});
 
 app.listen(3000, () => console.log('Listening...'));

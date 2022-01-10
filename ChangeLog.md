@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.6.0] - 2022-01-10
+### Added
+- Added config file.
+
+### Fixed
+- Notes without tags were not displayed.
+
+### Changed
+- Separated initialisation of database schema from seeding.
+- Refactor - consolidated routes and split admin controller.
+
 ## [0.5.0] - 2022-01-08
 ### Added
 - Add pagination.

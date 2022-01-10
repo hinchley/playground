@@ -1,3 +1,5 @@
+import config from '../config.js';
+
 export const prompt = (req, res) => {
   res.render('auth/index', {
     title: "Login",
@@ -9,9 +11,7 @@ export const prompt = (req, res) => {
 export const login = (req, res) => {
   const { username, password } = req.body;
 
-  const secret = process.env.ADMIN_PASSWORD || 'password';
-
-  if (username == 'admin' && password == secret) {
+  if (username == 'admin' && password == config.admin.password) {
     req.session.isAuth = true;
     res.redirect('/admin');
   } else {

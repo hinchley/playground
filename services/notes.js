@@ -1,13 +1,13 @@
 import * as db from './db.js';
 import config from '../config.js';
 
-const limit = config.pagesize;
+const limit = config.pagination.pagesize;
 
 export const one = (id) => {
   const query = `
     SELECT Notes.*, GROUP_CONCAT(Tags.name, ', ') As tags FROM Notes
-      INNER JOIN NotesTags ON Notes.id = NotesTags.Note
-      INNER JOIN Tags ON Tags.id = NotesTags.Tag
+      LEFT JOIN NotesTags ON Notes.id = NotesTags.note
+      LEFT JOIN Tags ON Tags.id = NotesTags.tag
       WHERE Notes.id = @id
     `;
   return db.one(query, { id });

@@ -71,7 +71,3 @@ CREATE INDEX IF NOT EXISTS NotesNameCreated ON Notes (created);
 CREATE INDEX IF NOT EXISTS NotesNameUpdated ON Notes (updated);
 
 CREATE UNIQUE INDEX IF NOT EXISTS TagsName ON Tags (name);
-
-INSERT INTO Notes (content)
-  SELECT 'This is content'
-  WHERE NOT EXISTS (SELECT * FROM Notes);
